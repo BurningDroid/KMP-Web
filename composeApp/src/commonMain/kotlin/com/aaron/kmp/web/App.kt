@@ -7,8 +7,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.aaron.kmp.web.nav.Details
 import com.aaron.kmp.web.nav.Home
 import com.aaron.kmp.web.nav.TechList
+import com.aaron.kmp.web.ui.details.DetailsPane
 import com.aaron.kmp.web.ui.home.Home
 import com.aaron.kmp.web.ui.list.ListPane
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -29,6 +31,14 @@ fun App() {
 
             composable<TechList> {
                 ListPane(
+                    navController = navController
+                )
+            }
+
+            composable<Details> {
+                val keyword = it.arguments?.getString("keyword")
+                DetailsPane(
+                    keyword = keyword,
                     navController = navController
                 )
             }

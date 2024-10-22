@@ -7,3 +7,8 @@ object Home
 
 @Serializable
 object TechList
+
+@Serializable
+data class Details(
+    val keyword: String
+)

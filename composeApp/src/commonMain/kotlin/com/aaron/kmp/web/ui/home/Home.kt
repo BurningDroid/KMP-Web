@@ -5,7 +5,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,21 +26,34 @@ import org.jetbrains.compose.resources.painterResource
 fun Home(
     navController: NavHostController
 ) {
-    Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        var showContent by remember { mutableStateOf(false) }
-        Button(
-            onClick = {
-                showContent = !showContent
-                navController.navigate(TechList)
-            }
-        ) {
-            Text("Click me!")
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text("Home")
+                }
+            )
         }
-        AnimatedVisibility(showContent) {
-            val greeting = remember { Greeting().greet() }
-            Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Image(painterResource(Res.drawable.compose_multiplatform), null)
-                Text("Compose: $greeting")
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            var showContent by remember { mutableStateOf(false) }
+            Button(
+                onClick = {
+                    showContent = !showContent
+                    navController.navigate(TechList)
+                }
+            ) {
+                Text("Click me!")
+            }
+            AnimatedVisibility(showContent) {
+                val greeting = remember { Greeting().greet() }
+                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                    Image(painterResource(Res.drawable.compose_multiplatform), null)
+                    Text("Compose: $greeting")
+                }
             }
         }
     }

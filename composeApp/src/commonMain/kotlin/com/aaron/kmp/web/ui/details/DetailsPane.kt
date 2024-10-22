@@ -1,11 +1,8 @@
-package com.aaron.kmp.web.ui.list
+package com.aaron.kmp.web.ui.details
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -16,21 +13,20 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.aaron.kmp.web.nav.Details
 
 @Composable
-fun ListPane(
+fun DetailsPane(
+    keyword: String?,
     navController: NavHostController,
-    vm: ListViewModel = viewModel { ListViewModel() },
+    vm: DetailsViewModel = viewModel { DetailsViewModel() },
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "List")
+                    Text(text = keyword ?: "")
                 },
                 navigationIcon = {
                     IconButton(
@@ -52,43 +48,14 @@ fun ListPane(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ListItems(
-                list = vm.list,
-                onClick = { item ->
-                    navController.navigate(Details(item))
+            when(val uiState = vm.uiState) {
+                DetailsState.Loading -> {
+                    CircularProgressIndicator()
                 }
-            )
+                is DetailsState.Success -> {
+                    Text(text = uiState.keyword)
+                }
+            }
         }
     }
-}
-
-@Composable
-private fun ListItems(
-    list: List<String>,
-    onClick: (String) -> Unit
-) {
-    LazyColumn {
-        items(list) { item ->
-            ListItem(
-                text = item,
-                onClick = onClick
-            )
-        }
-    }
-}
-
-@Composable
-private fun ListItem(
-    text: String,
-    onClick: (String) -> Unit
-) {
-    Text(
-        text = text,
-        modifier = Modifier
-            .clickable(onClick = { onClick(text) })
-            .padding(
-                horizontal = 20.dp,
-                vertical = 12.dp
-            )
-    )
 }
