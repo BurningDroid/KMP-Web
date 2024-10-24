@@ -8,7 +8,10 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    kotlin("plugin.serialization") version "2.0.20"
+
+    kotlin("plugin.serialization") version libs.versions.kotlin
+
+    id("com.google.gms.google-services")
 }
 
 kotlin {
@@ -55,6 +58,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(project.dependencies.platform(libs.firebase.bom))
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -68,6 +72,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.androidx.navigation.compose)
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.gitlive.firebase.firestore)
         }
     }
 }
@@ -100,6 +105,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.firebase.common.ktx)
     debugImplementation(compose.uiTooling)
 }
 

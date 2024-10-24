@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "281171051911",
+    "project_id": "kmp-web-sample",
+    "storage_bucket": "kmp-web-sample.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281171051911:android:dca7f2e9f01c5416ba3f22",
+        "android_client_info": {
+          "package_name": "com.aaron.kmp.web"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1kADuIFU4oE_gF2ZTA5BCaqNUMEaTbm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
