@@ -10,15 +10,18 @@ import androidx.navigation.compose.rememberNavController
 import com.aaron.kmp.web.nav.Details
 import com.aaron.kmp.web.nav.Home
 import com.aaron.kmp.web.nav.TechList
+import com.aaron.kmp.web.theme.colors
 import com.aaron.kmp.web.ui.details.DetailsPane
-import com.aaron.kmp.web.ui.home.Home
+import com.aaron.kmp.web.ui.home.HomePane
 import com.aaron.kmp.web.ui.list.ListPane
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
+    MaterialTheme(
+        colors = colors
+    ) {
         val navController = rememberNavController()
         NavHost(
             navController = navController,
@@ -26,7 +29,7 @@ fun App() {
             modifier = Modifier.imePadding()
         ) {
             composable<Home> {
-                Home(navController)
+                HomePane(navController)
             }
 
             composable<TechList> {

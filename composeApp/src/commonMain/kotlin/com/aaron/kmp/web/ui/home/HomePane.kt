@@ -23,14 +23,14 @@ import kmpweb.composeapp.generated.resources.compose_multiplatform
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun Home(
+fun HomePane(
     navController: NavHostController
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text("Home")
+                    Text("흑백 요리사 맛집 목록")
                 }
             )
         }
