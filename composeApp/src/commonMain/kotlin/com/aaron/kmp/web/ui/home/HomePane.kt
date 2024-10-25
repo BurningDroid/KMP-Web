@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.aaron.kmp.web.Greeting
 import com.aaron.kmp.web.nav.TechList
@@ -24,7 +25,8 @@ import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun HomePane(
-    navController: NavHostController
+    navController: NavHostController,
+    vm: HomeViewModel = viewModel { HomeViewModel() },
 ) {
     Scaffold(
         topBar = {
